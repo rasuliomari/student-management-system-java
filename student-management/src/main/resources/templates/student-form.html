@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Add Student</title>
+
+    <link rel="stylesheet"
+          href="/css/style.css">
+
+</head>
+
+<body>
+
+<header class="navbar">
+
+    <div class="logo">
+        Student Management
+    </div>
+
+    <nav>
+
+        <a href="/">
+            Home
+        </a>
+
+        <a href="/students">
+            Students
+        </a>
+
+    </nav>
+
+</header>
+
+
+<main class="form-container">
+
+    <h1>Add Student</h1>
+
+
+    <form action="/students/save"
+          method="POST"
+          th:object="${student}">
+
+
+        <label>
+            First Name
+        </label>
+
+        <input type="text"
+               th:field="*{firstName}"
+               required>
+
+
+        <label>
+            Last Name
+        </label>
+
+        <input type="text"
+               th:field="*{lastName}"
+               required>
+
+
+        <label>
+            Email
+        </label>
+
+        <input type="email"
+               th:field="*{email}"
+               required>
+
+
+        <label>
+            Phone
+        </label>
+
+        <input type="text"
+               th:field="*{phone}"
+               required>
+
+
+        <label>
+            Course
+        </label>
+
+        <input type="text"
+               th:field="*{course}"
+               required>
+
+
+        <button type="submit">
+            Save Student
+        </button>
+
+    </form>
+
+</main>
+
+
+<footer>
+
+    <p>
+        &copy; 2026 Student Management System
+    </p>
+
+</footer>
+
+</body>
+
+</html>
