@@ -55,4 +55,17 @@ public class StudentController {
 
         return "redirect:/students";
     }
+
+    @GetMapping("/edit/{id}")
+public String showEditForm(@PathVariable Long id, Model model) {
+
+    Student student = studentRepository.findById(id)
+            .orElseThrow(() -> new IllegalArgumentException(
+                    "Invalid student ID: " + id
+            ));
+
+    model.addAttribute("student", student);
+
+    return "student-form";
+}
 }

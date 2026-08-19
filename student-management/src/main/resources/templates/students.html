@@ -85,33 +85,39 @@
             </td>
 
             <td th:text="${student.firstName}">
-                John
+                Rasoul
             </td>
 
             <td th:text="${student.lastName}">
-                Doe
+                Omari
             </td>
 
             <td th:text="${student.email}">
-                john@example.com
+                rasoul.omari@example.com
             </td>
 
             <td th:text="${student.phone}">
-                0712345678
+                0657707046
             </td>
 
             <td th:text="${student.course}">
-                Computer Science
+                CSDFE
             </td>
 
             <td>
 
+                <a class="edit"
+                    th:href="@{/students/edit/{id}(id=${student.id})}">
+                    Edit
+                </a>
+                
                 <a th:href="@{/students/delete/{id}(id=${student.id})}"
                    onclick="return confirm('Delete this student?')">
 
                     Delete
 
                 </a>
+
 
             </td>
 
