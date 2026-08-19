@@ -21,6 +21,7 @@ public class StudentController {
         this.studentRepository = studentRepository;
     }
 
+    // Display all students
     @GetMapping
     public String students(Model model) {
 
@@ -32,6 +33,7 @@ public class StudentController {
         return "students";
     }
 
+    // Show empty form for new student
     @GetMapping("/new")
     public String showStudentForm(Model model) {
 
@@ -40,32 +42,41 @@ public class StudentController {
         return "student-form";
     }
 
+    // Show form for editing existing student
+    @GetMapping("/edit/{id}")
+    public String editStudent(
+            @PathVariable Long id,
+            Model model) {
+
+        Student student = studentRepository
+                .findById(id)
+                .orElseThrow(() ->
+                        new IllegalArgumentException(
+                                "Invalid student ID: " + id
+                        ));
+
+        model.addAttribute("student", student);
+
+        return "student-form";
+    }
+
+    // Save new or edited student
     @PostMapping("/save")
-    public String saveStudent(@ModelAttribute Student student) {
+    public String saveStudent(
+            @ModelAttribute Student student) {
 
         studentRepository.save(student);
 
         return "redirect:/students";
     }
 
+    // Delete student
     @GetMapping("/delete/{id}")
-    public String deleteStudent(@PathVariable Long id) {
+    public String deleteStudent(
+            @PathVariable Long id) {
 
         studentRepository.deleteById(id);
 
         return "redirect:/students";
     }
-
-    @GetMapping("/edit/{id}")
-public String showEditForm(@PathVariable Long id, Model model) {
-
-    Student student = studentRepository.findById(id)
-            .orElseThrow(() -> new IllegalArgumentException(
-                    "Invalid student ID: " + id
-            ));
-
-    model.addAttribute("student", student);
-
-    return "student-form";
-}
 }

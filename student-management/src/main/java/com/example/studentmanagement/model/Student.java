@@ -32,8 +32,14 @@ public class Student {
         this.course = course;
     }
 
+    // GET ID
     public Long getId() {
         return id;
+    }
+
+    // SET ID - THIS WAS MISSING
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getFirstName() {

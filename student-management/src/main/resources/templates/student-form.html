@@ -45,6 +45,43 @@
 
 
     <form action="/students/save"
+      method="POST"
+      th:object="${student}">
+
+    <input type="hidden" th:field="*{id}">
+
+    <label>First Name</label>
+    <input type="text"
+           th:field="*{firstName}"
+           required>
+
+    <label>Last Name</label>
+    <input type="text"
+           th:field="*{lastName}"
+           required>
+
+    <label>Email</label>
+    <input type="email"
+           th:field="*{email}"
+           required>
+
+    <label>Phone</label>
+    <input type="text"
+           th:field="*{phone}"
+           required>
+
+    <label>Course</label>
+    <input type="text"
+           th:field="*{course}"
+           required>
+
+    <button type="submit">
+        Save Student
+    </button>
+
+</form>
+
+    <!-- <form action="/students/save"
           method="POST"
           th:object="${student}">
 
@@ -100,7 +137,7 @@
             Save Student
         </button>
 
-    </form>
+    </form> -->
 
 </main>
 
