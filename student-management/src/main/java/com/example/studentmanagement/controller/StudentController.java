@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.example.studentmanagement.model.Student;
 import com.example.studentmanagement.repository.StudentRepository;
 
+import jakarta.servlet.http.HttpSession;
+
 @Controller
 @RequestMapping("/students")
 public class StudentController {
@@ -23,15 +25,33 @@ public class StudentController {
 
     // Display all students
     @GetMapping
-    public String students(Model model) {
+    public String students(
+        Model model,
+        HttpSession session) {
 
-        model.addAttribute(
-                "students",
-                studentRepository.findAll()
-        );
-
-        return "students";
+    if (session.getAttribute("loggedInUser") == null) {
+        return "redirect:/login";
     }
+
+    model.addAttribute(
+            "students",
+            studentRepository.findAll()
+    );
+
+    return "students";
+    }
+
+
+
+    // public String students(Model model) {
+
+    //     model.addAttribute(
+    //             "students",
+    //             studentRepository.findAll()
+    //     );
+
+    //     return "students";
+    // }
 
     // Show empty form for new student
     @GetMapping("/new")
